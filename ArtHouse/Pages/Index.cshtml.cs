@@ -1,0 +1,63 @@
+﻿using System.Threading.Tasks;
+using ArtHouse.Helpers;
+using ArtHouse.Models;
+using ArtHouse.Repository.Interfaces;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+namespace ArtHouse.Pages
+{
+    public class IndexModel : PageModel
+    {
+        private readonly ILogger<IndexModel> _logger;
+
+        public IndexModel(ILogger<IndexModel> logger)
+        {
+            _logger = logger;
+        }
+
+        public async Task<IActionResult> OnGet()
+        {
+            if (HttpContext.Request.Query["handler"] == "ClearSession")
+            { 
+                return OnPostClearSession();
+            }
+            if (HttpContext.Request.Cookies.ContainsKey("email") && HttpContext.Request.Cookies.ContainsKey("password") && HttpContext.Session.GetString("role")=="Guest")
+            {
+                var repository = HttpContext.RequestServices.GetService<IUserR>();
+                var email = HttpContext.Request.Cookies["email"];
+                var password = HttpContext.Request.Cookies["password"];
+                var user = await repository.GetUserByEmailAndPasswordAsync(email, password);
+                var a = HttpContext.Session.GetString("role");
+                HttpContext.Session.Set<User>("Current_user", user);
+            }
+            if (HttpContext.Session.GetString("role") == "Guest")
+            {
+                ViewData["name"] = "Путник";
+                ViewData["role"] = "Guest";
+                return null;
+            }
+            else if (HttpContext.Session.GetString("role") == "User")
+            {
+                var user = HttpContext.Session.Get<User>("Current_user");
+                ViewData["name"] = user.Nickname;
+                ViewData["role"] = "User";
+                return null;
+            }
+            return null;
+        }
+        public IActionResult OnPostClearSession()
+        {
+            HttpContext.Session.Clear();
+            if (HttpContext.Request.Cookies["email"] != null || HttpContext.Request.Cookies["password"]!= null)
+            {
+                HttpContext.Response.Cookies.Delete("email");
+                HttpContext.Response.Cookies.Delete("password");
+            }
+
+            return Redirect("/Index");
+        }
+    }
+}

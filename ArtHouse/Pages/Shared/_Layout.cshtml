@@ -1,0 +1,90 @@
+﻿@using Microsoft.AspNetCore.Http
+@using ArtHouse.Models
+@using ArtHouse.Helpers
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ArtHouse</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/mainPage.css" type="text/css" />
+    @await Html.PartialAsync("_ForeignStyle")
+</head>
+<body>
+    <header class="header-main-area" style="background: white;">
+        <div class="header-padding">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+                    <a class="navbar-brand" style="margin-top: -27px; color:red; font-family:Brush Script MT, Brush Script Std, cursive" href="#">ArtHouse</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="wide_navbar nav-item">
+                                <a class="nav-link" style="color: black" asp-area="" asp-page="/Index">Музей </a>
+                            </li>
+                            <li class="wide_navbar nav-item">
+                                <a class="nav-link" style="color: black" asp-area="" asp-page="/Afisha">Афиша</a>
+                            </li>
+                            <li class="wide_navbar nav-item">
+                                <a class="nav-link" style="color: black" asp-area="" asp-page="/Shop">Магазин</a>
+                            </li>
+                            @if (Context.Session.GetString("role") == "Guest")
+                            {
+                                <li class="wide_navbar nav-item">
+                                    <a class="nav-link" style="color: black" asp-area="" asp-page="/Registration">Личный кабинет</a>
+                                </li>
+                            }
+                            @if (Context.Session.GetString("role") == "User")
+                            {
+                                <li class="wide_navbar nav-item">
+                                    <a type="submit" style="color: black" class="nav-link" asp-page="Index" asp-page-handler="ClearSession">Выход</a>
+                                </li>
+                            }
+                            @if (Context.Session.GetString("role") == "User")
+                            {
+                                <li class="wide_navbar nav-item">
+                                    <a class="nav-link" href="/Profile/?id=@(Context.Session.Get<User>("Current_user").Id)">Мой профиль</a>
+                                </li>
+                            }
+                            <div class="grey_block" style="font-size: 12px; justify-content:space-around">
+                                <a style="margin-left: 15px; color: gray" asp-area="" asp-page="/Contacti">контакты</a>
+                                <a style="margin-left: 15px; color: gray" asp-area="" asp-page="/Ticket">билеты</a>
+                                <a class="nav-link" style="color: black" asp-area="" asp-page="/FAQ">другие часто задоваемые вопросы</a>
+                            </div>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    @if (!Context.Request.Query.ContainsKey("id"))
+    {
+<section class="about-area" style="background-color: black; bottom: 0px;">
+    <div class="about-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="about-right-content">
+                        <h3>Все права защищены</h3>
+                        <p class="olesya-kal">Все права защищены</p>
+                        <a asp-page="/DonatePage" id="btn_support" class="about-right-btn">Донат</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+     }
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        @RenderSection("Scripts", required: false)
+    </body>
+</html>

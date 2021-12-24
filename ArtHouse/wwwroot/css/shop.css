@@ -1,0 +1,51 @@
+﻿* {
+    box-sizing: border-box;
+    color: white;
+}
+
+.product-item {
+    width: 300px;
+    text-align: center;
+    border-bottom: 2px solid #F5F5F5;
+    font-family: "Open Sans";
+    transition: .3s ease-in;
+    margin-top: 100px;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+    color: white;
+}
+
+.elements {
+    display: inline-flex;
+    color: white;
+}
+
+.product-item:hover {
+    border-bottom: 3px solid #ff0000;
+}
+
+.product-item img {
+    display: block;
+    height: 300px;
+
+}
+
+.product-list h3 {
+    font-size: 18px;
+    font-weight: 400;
+    color: white;
+    font-weight: bold;
+}
+
+.catalog {
+    display: inline-flex;
+    justify-content: left;
+}
+
+.button{
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+}

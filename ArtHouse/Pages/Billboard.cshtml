@@ -1,0 +1,35 @@
+﻿@page
+@model ArtHouse.Pages.AfishaModel
+@{
+    ViewData["Title"] = "Billboard";
+}
+
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <html lang="en">
+        <head>
+            <title>@ViewData["Title"]</title>
+            <link rel="stylesheet" href="/css/afisha.css">
+        </head>
+            <h1>Афиша</h1>
+            <div class="catalog">
+                <div class="product-item">
+                    <a asp-area="" asp-page="/img2"><img src="https://www.erarta.com/upload/resize_cache/iblock/b75/370_240_2/b75ef0a42c7e8835e5c427963b572fa2.png"></a>
+                    <div class="product-list">
+                        <h3>Макс Зорн. Огни города</h3>
+                        <a>17 декабря 2021 - 17 апреля 2022</a>
+                    </div>
+                </div>
+                <div class="product-item">
+                    <a asp-area="" asp-page="/img1"><img src="https://www.erarta.com/upload/resize_cache/iblock/e75/370_240_2/e75fce9c017e1684dafcb9dbc5c276f9.jpg"></a>
+                    <div class="product-list">
+                        <h3>Виллем ван Вигель. Кинетическая скульптура</h3>
+                        <a>1 декабря 2022 - 1 июня 2022</a>
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "LHO72WhfBl5dAsiIxGbMXsYSwlBXkMwE0CVmCUwz270GPQOwXeuE24RwM/HHtCrAhiwo0weTOdZcYJheC8DAag==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\79191\\OneDrive\\Рабочий стол\\ArtHouse\\ArtHouse\\ArtHouse.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\79191\\.nuget\\packages\\npgsql\\5.0.0\\npgsql.5.0.0.nupkg.sha512",
+    "C:\\Users\\79191\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512",
+    "C:\\Users\\79191\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\79191\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\79191\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
+  ],
+  "logs": []
+}
